@@ -1,5 +1,24 @@
 
 
+/***********************************************************************/
+/*		  MOStreamLiveSDK					
+/***********************************************************************/
+
+
+1、android media push;
+   
+
+2、ios media push;
+
+
+3、caputure video and audio, support rtmp protocol;
+
+
+4、support hw encode for video;
+
+
+5、support openh264 and x264
+
 
 /***********************************************************************/
 /*		  跨平台手机直播SDK					
