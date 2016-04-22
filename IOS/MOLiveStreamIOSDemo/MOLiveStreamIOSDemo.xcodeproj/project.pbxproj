@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF5154421CCA91C500BF69FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5154411CCA91C500BF69FB /* main.m */; };
+		EF5154451CCA91C500BF69FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5154441CCA91C500BF69FB /* AppDelegate.m */; };
+		EF51544B1CCA91C500BF69FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5154491CCA91C500BF69FB /* Main.storyboard */; };
+		EF51544D1CCA91C500BF69FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF51544C1CCA91C500BF69FB /* Assets.xcassets */; };
+		EF5154501CCA91C500BF69FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF51544E1CCA91C500BF69FB /* LaunchScreen.storyboard */; };
+		EF51546C1CCA939100BF69FB /* liveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF51546B1CCA939100BF69FB /* liveView.m */; settings = {ASSET_TAGS = (); }; };
+		EF5154701CCA93DF00BF69FB /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EF51546F1CCA93DF00BF69FB /* UIView+Frame.m */; settings = {ASSET_TAGS = (); }; };
+		EF68406D1CCA9D3D00C48D7A /* libMOLiveStreamSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF68406B1CCA9D3D00C48D7A /* libMOLiveStreamSDK.a */; settings = {ASSET_TAGS = (); }; };
+		EF6840751CCA9E9A00C48D7A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5154471CCA91C500BF69FB /* ViewController.m */; };
+		EF6840991CCAB89E00C48D7A /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6840981CCAB89E00C48D7A /* libc++.1.dylib */; };
+		EF6840A81CCAC37E00C48D7A /* bg_untick.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68409B1CCAC37E00C48D7A /* bg_untick.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840A91CCAC37E00C48D7A /* btn_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68409C1CCAC37E00C48D7A /* btn_camera@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840AA1CCAC37E00C48D7A /* btn_camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68409D1CCAC37E00C48D7A /* btn_camera@3x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840AB1CCAC37E00C48D7A /* btn_camera_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68409E1CCAC37E00C48D7A /* btn_camera_press@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840AC1CCAC37E00C48D7A /* btn_camera_press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68409F1CCAC37E00C48D7A /* btn_camera_press@3x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840AD1CCAC37E00C48D7A /* btn_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6840A01CCAC37E00C48D7A /* btn_close@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840AE1CCAC37E00C48D7A /* btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6840A11CCAC37E00C48D7A /* btn_close@3x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840AF1CCAC37E00C48D7A /* btn_close_gray_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6840A21CCAC37E00C48D7A /* btn_close_gray_44@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840B01CCAC37E00C48D7A /* btn_close_gray_44@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6840A31CCAC37E00C48D7A /* btn_close_gray_44@3x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840B11CCAC37E00C48D7A /* btn_close_gray_44_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6840A41CCAC37E00C48D7A /* btn_close_gray_44_press@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840B21CCAC37E00C48D7A /* btn_close_gray_44_press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6840A51CCAC37E00C48D7A /* btn_close_gray_44_press@3x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840B31CCAC37E00C48D7A /* btn_close_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6840A61CCAC37E00C48D7A /* btn_close_press@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EF6840B41CCAC37E00C48D7A /* btn_close_press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6840A71CCAC37E00C48D7A /* btn_close_press@3x.png */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EF51543D1CCA91C500BF69FB /* MOLiveStreamIOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOLiveStreamIOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF5154411CCA91C500BF69FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EF5154431CCA91C500BF69FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EF5154441CCA91C500BF69FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EF5154461CCA91C500BF69FB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EF5154471CCA91C500BF69FB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EF51544A1CCA91C500BF69FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EF51544C1CCA91C500BF69FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF51544F1CCA91C500BF69FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EF5154511CCA91C500BF69FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF51546A1CCA939100BF69FB /* liveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liveView.h; sourceTree = "<group>"; };
+		EF51546B1CCA939100BF69FB /* liveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = liveView.m; sourceTree = "<group>"; };
+		EF51546E1CCA93DF00BF69FB /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		EF51546F1CCA93DF00BF69FB /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		EF68406B1CCA9D3D00C48D7A /* libMOLiveStreamSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMOLiveStreamSDK.a; sourceTree = "<group>"; };
+		EF68406C1CCA9D3D00C48D7A /* MOLiveStreamSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOLiveStreamSDK.h; sourceTree = "<group>"; };
+		EF6840981CCAB89E00C48D7A /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "../../../../../usr/lib/libc++.1.dylib"; sourceTree = "<group>"; };
+		EF68409B1CCAC37E00C48D7A /* bg_untick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_untick.png; sourceTree = "<group>"; };
+		EF68409C1CCAC37E00C48D7A /* btn_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_camera@2x.png"; sourceTree = "<group>"; };
+		EF68409D1CCAC37E00C48D7A /* btn_camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_camera@3x.png"; sourceTree = "<group>"; };
+		EF68409E1CCAC37E00C48D7A /* btn_camera_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_camera_press@2x.png"; sourceTree = "<group>"; };
+		EF68409F1CCAC37E00C48D7A /* btn_camera_press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_camera_press@3x.png"; sourceTree = "<group>"; };
+		EF6840A01CCAC37E00C48D7A /* btn_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close@2x.png"; sourceTree = "<group>"; };
+		EF6840A11CCAC37E00C48D7A /* btn_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close@3x.png"; sourceTree = "<group>"; };
+		EF6840A21CCAC37E00C48D7A /* btn_close_gray_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_gray_44@2x.png"; sourceTree = "<group>"; };
+		EF6840A31CCAC37E00C48D7A /* btn_close_gray_44@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_gray_44@3x.png"; sourceTree = "<group>"; };
+		EF6840A41CCAC37E00C48D7A /* btn_close_gray_44_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_gray_44_press@2x.png"; sourceTree = "<group>"; };
+		EF6840A51CCAC37E00C48D7A /* btn_close_gray_44_press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_gray_44_press@3x.png"; sourceTree = "<group>"; };
+		EF6840A61CCAC37E00C48D7A /* btn_close_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_press@2x.png"; sourceTree = "<group>"; };
+		EF6840A71CCAC37E00C48D7A /* btn_close_press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_press@3x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF51543A1CCA91C500BF69FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF6840991CCAB89E00C48D7A /* libc++.1.dylib in Frameworks */,
+				EF68406D1CCA9D3D00C48D7A /* libMOLiveStreamSDK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF5154341CCA91C500BF69FB = {
+			isa = PBXGroup;
+			children = (
+				EF6840981CCAB89E00C48D7A /* libc++.1.dylib */,
+				EF51543F1CCA91C500BF69FB /* MOLiveStreamIOSDemo */,
+				EF51543E1CCA91C500BF69FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EF51543E1CCA91C500BF69FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF51543D1CCA91C500BF69FB /* MOLiveStreamIOSDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF51543F1CCA91C500BF69FB /* MOLiveStreamIOSDemo */ = {
+			isa = PBXGroup;
+			children = (
+				EF68409A1CCAC37E00C48D7A /* resouce */,
+				EF68406A1CCA9D3D00C48D7A /* MOLiveStreamSDK */,
+				EF51546D1CCA93DF00BF69FB /* category */,
+				EF5154691CCA939100BF69FB /* view */,
+				EF5154431CCA91C500BF69FB /* AppDelegate.h */,
+				EF5154441CCA91C500BF69FB /* AppDelegate.m */,
+				EF5154461CCA91C500BF69FB /* ViewController.h */,
+				EF5154471CCA91C500BF69FB /* ViewController.m */,
+				EF5154491CCA91C500BF69FB /* Main.storyboard */,
+				EF51544C1CCA91C500BF69FB /* Assets.xcassets */,
+				EF51544E1CCA91C500BF69FB /* LaunchScreen.storyboard */,
+				EF5154511CCA91C500BF69FB /* Info.plist */,
+				EF5154401CCA91C500BF69FB /* Supporting Files */,
+			);
+			path = MOLiveStreamIOSDemo;
+			sourceTree = "<group>";
+		};
+		EF5154401CCA91C500BF69FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF5154411CCA91C500BF69FB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EF5154691CCA939100BF69FB /* view */ = {
+			isa = PBXGroup;
+			children = (
+				EF51546A1CCA939100BF69FB /* liveView.h */,
+				EF51546B1CCA939100BF69FB /* liveView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		EF51546D1CCA93DF00BF69FB /* category */ = {
+			isa = PBXGroup;
+			children = (
+				EF51546E1CCA93DF00BF69FB /* UIView+Frame.h */,
+				EF51546F1CCA93DF00BF69FB /* UIView+Frame.m */,
+			);
+			path = category;
+			sourceTree = "<group>";
+		};
+		EF68406A1CCA9D3D00C48D7A /* MOLiveStreamSDK */ = {
+			isa = PBXGroup;
+			children = (
+				EF68406B1CCA9D3D00C48D7A /* libMOLiveStreamSDK.a */,
+				EF68406C1CCA9D3D00C48D7A /* MOLiveStreamSDK.h */,
+			);
+			path = MOLiveStreamSDK;
+			sourceTree = "<group>";
+		};
+		EF68409A1CCAC37E00C48D7A /* resouce */ = {
+			isa = PBXGroup;
+			children = (
+				EF68409B1CCAC37E00C48D7A /* bg_untick.png */,
+				EF68409C1CCAC37E00C48D7A /* btn_camera@2x.png */,
+				EF68409D1CCAC37E00C48D7A /* btn_camera@3x.png */,
+				EF68409E1CCAC37E00C48D7A /* btn_camera_press@2x.png */,
+				EF68409F1CCAC37E00C48D7A /* btn_camera_press@3x.png */,
+				EF6840A01CCAC37E00C48D7A /* btn_close@2x.png */,
+				EF6840A11CCAC37E00C48D7A /* btn_close@3x.png */,
+				EF6840A21CCAC37E00C48D7A /* btn_close_gray_44@2x.png */,
+				EF6840A31CCAC37E00C48D7A /* btn_close_gray_44@3x.png */,
+				EF6840A41CCAC37E00C48D7A /* btn_close_gray_44_press@2x.png */,
+				EF6840A51CCAC37E00C48D7A /* btn_close_gray_44_press@3x.png */,
+				EF6840A61CCAC37E00C48D7A /* btn_close_press@2x.png */,
+				EF6840A71CCAC37E00C48D7A /* btn_close_press@3x.png */,
+			);
+			path = resouce;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF51543C1CCA91C500BF69FB /* MOLiveStreamIOSDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF51545F1CCA91C600BF69FB /* Build configuration list for PBXNativeTarget "MOLiveStreamIOSDemo" */;
+			buildPhases = (
+				EF5154391CCA91C500BF69FB /* Sources */,
+				EF51543A1CCA91C500BF69FB /* Frameworks */,
+				EF51543B1CCA91C500BF69FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MOLiveStreamIOSDemo;
+			productName = MOLiveStreamIOSDemo;
+			productReference = EF51543D1CCA91C500BF69FB /* MOLiveStreamIOSDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF5154351CCA91C500BF69FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = lee;
+				TargetAttributes = {
+					EF51543C1CCA91C500BF69FB = {
+						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 9Q2Q583872;
+					};
+				};
+			};
+			buildConfigurationList = EF5154381CCA91C500BF69FB /* Build configuration list for PBXProject "MOLiveStreamIOSDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF5154341CCA91C500BF69FB;
+			productRefGroup = EF51543E1CCA91C500BF69FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF51543C1CCA91C500BF69FB /* MOLiveStreamIOSDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF51543B1CCA91C500BF69FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF5154501CCA91C500BF69FB /* LaunchScreen.storyboard in Resources */,
+				EF6840AB1CCAC37E00C48D7A /* btn_camera_press@2x.png in Resources */,
+				EF6840B21CCAC37E00C48D7A /* btn_close_gray_44_press@3x.png in Resources */,
+				EF6840AA1CCAC37E00C48D7A /* btn_camera@3x.png in Resources */,
+				EF51544D1CCA91C500BF69FB /* Assets.xcassets in Resources */,
+				EF6840B01CCAC37E00C48D7A /* btn_close_gray_44@3x.png in Resources */,
+				EF6840B11CCAC37E00C48D7A /* btn_close_gray_44_press@2x.png in Resources */,
+				EF6840A91CCAC37E00C48D7A /* btn_camera@2x.png in Resources */,
+				EF6840B31CCAC37E00C48D7A /* btn_close_press@2x.png in Resources */,
+				EF6840B41CCAC37E00C48D7A /* btn_close_press@3x.png in Resources */,
+				EF6840AE1CCAC37E00C48D7A /* btn_close@3x.png in Resources */,
+				EF6840AF1CCAC37E00C48D7A /* btn_close_gray_44@2x.png in Resources */,
+				EF6840AC1CCAC37E00C48D7A /* btn_camera_press@3x.png in Resources */,
+				EF6840A81CCAC37E00C48D7A /* bg_untick.png in Resources */,
+				EF6840AD1CCAC37E00C48D7A /* btn_close@2x.png in Resources */,
+				EF51544B1CCA91C500BF69FB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF5154391CCA91C500BF69FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF6840751CCA9E9A00C48D7A /* ViewController.m in Sources */,
+				EF51546C1CCA939100BF69FB /* liveView.m in Sources */,
+				EF5154451CCA91C500BF69FB /* AppDelegate.m in Sources */,
+				EF5154701CCA93DF00BF69FB /* UIView+Frame.m in Sources */,
+				EF5154421CCA91C500BF69FB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EF5154491CCA91C500BF69FB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF51544A1CCA91C500BF69FB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EF51544E1CCA91C500BF69FB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF51544F1CCA91C500BF69FB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EF51545D1CCA91C600BF69FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF51545E1CCA91C600BF69FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF5154601CCA91C600BF69FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MOLiveStreamIOSDemo/MOLiveStreamSDK";
+				INFOPLIST_FILE = MOLiveStreamIOSDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MOLiveStreamIOSDemo/MOLiveStreamSDK",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"${inherited}",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = live.MOLiveStreamIOSDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64";
+			};
+			name = Debug;
+		};
+		EF5154611CCA91C600BF69FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MOLiveStreamIOSDemo/MOLiveStreamSDK";
+				INFOPLIST_FILE = MOLiveStreamIOSDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MOLiveStreamIOSDemo/MOLiveStreamSDK",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"${inherited}",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = live.MOLiveStreamIOSDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF5154381CCA91C500BF69FB /* Build configuration list for PBXProject "MOLiveStreamIOSDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF51545D1CCA91C600BF69FB /* Debug */,
+				EF51545E1CCA91C600BF69FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF51545F1CCA91C600BF69FB /* Build configuration list for PBXNativeTarget "MOLiveStreamIOSDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF5154601CCA91C600BF69FB /* Debug */,
+				EF5154611CCA91C600BF69FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF5154351CCA91C500BF69FB /* Project object */;
+}
