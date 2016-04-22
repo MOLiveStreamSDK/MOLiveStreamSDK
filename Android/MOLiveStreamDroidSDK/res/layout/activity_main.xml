@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <android.view.SurfaceView
+        android:id="@+id/surface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+	/>
+		 <Button
+            android:id="@+id/live_control"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="changeButtonColor"
+            android:text="Start"
+            android:layout_alignParentBottom="true"
+            >       
+        </Button>
+        
+    	<Button
+            android:id="@+id/preview_camera"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="changeButtonColor"
+            android:text="Preview"
+            android:layout_above="@id/live_control"
+            >       
+        </Button>
+        
+        <Button
+            android:id="@+id/flash_ctrl"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="changeButtonColor"
+            android:text="flash_ctrl"
+            android:layout_toRightOf="@id/preview_camera"
+            android:layout_above="@id/live_control"
+            >       
+        </Button>
+        
+        
+        <Button
+            android:id="@+id/camera_change"
+            android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:onClick="changeButtonColor"
+             android:text="change"
+             android:layout_alignParentBottom="true"
+             android:layout_toRightOf="@id/live_control"
+            >       
+        </Button>  
+        <Button
+            android:id="@+id/back"
+            android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:onClick="changeButtonColor"
+             android:text="Back"
+             android:layout_alignParentBottom="true"
+             android:layout_toRightOf="@id/camera_change"
+            >       
+        </Button>
+            		
+    
+ </RelativeLayout>

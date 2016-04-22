@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView 
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="URL"
+        android:layout_marginTop = "100dp"
+        android:gravity="center_vertical"
+        />
+    
+    <EditText
+        android:id="@+id/server_url_edit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop = "100dp"
+        android:layout_toRightOf="@id/tv"
+        android:text="rtmp://192.168.0.104/live/android"
+        />
+
+    <CheckBox
+        android:id="@+id/enable_audio_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv"
+        android:text="enable audio" />
+
+    <RadioButton
+        android:id="@+id/radio480P"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/enable_audio_checkbox"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/enable_audio_checkbox"
+        android:text="480P" />
+    
+    <RadioButton
+        android:id="@+id/radio360P"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/radio480P"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/radio480P"
+        android:text="360P" />
+    
+
+    <CheckBox
+        android:id="@+id/enable_video_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enable_audio_checkbox"
+        android:layout_toLeftOf="@+id/radioVGA"
+        android:text="enable video" />
+    
+    <RadioButton
+        android:id="@+id/radio240P"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/enable_video_checkbox"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/enable_video_checkbox"
+        android:checked="false"
+        android:text="240P" />
+    
+    <RadioButton
+        android:id="@+id/radio720P"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/radio240P"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/radio240P"
+        android:checked="true"
+        android:text="720P" />
+
+     <Button
+         android:id="@+id/setting_ok"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/enable_video_checkbox"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="23dp"
+         android:text="完成设置" />
+
+</RelativeLayout>
