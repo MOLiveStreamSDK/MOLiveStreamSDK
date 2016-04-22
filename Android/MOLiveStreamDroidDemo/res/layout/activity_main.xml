@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <android.view.SurfaceView
+        android:id="@+id/surface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+	/>
+
+		
+        <Button
+            android:id="@+id/live_control"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="changeButtonColor"
+            android:text="live"
+            android:layout_alignParentBottom="true"
+            >       
+        </Button>  
+        
+        <EditText 
+       		android:id="@+id/url_tv"
+        	android:layout_width="match_parent"
+        	android:layout_height="40dp"
+        	android:text="URL"
+        	android:layout_above="@id/live_control"
+        	android:gravity="center_vertical"
+        />
+        
+        <Button
+            android:id="@+id/preview"
+            android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:onClick="changeButtonColor"
+             android:text="cam"
+             android:layout_alignParentBottom="true"
+             android:layout_toRightOf="@id/live_control"
+            >       
+        </Button>
+        
+        <Button
+            android:id="@+id/camera_change"
+            android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:onClick="changeButtonColor"
+             android:text="switch"
+             android:layout_alignParentBottom="true"
+             android:layout_toRightOf="@id/preview"
+            >       
+        </Button>  
+        
+        <Button
+            android:id="@+id/flash"
+            android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:onClick="changeButtonColor"
+             android:text="Flash"
+             android:layout_alignParentBottom="true"
+             android:layout_toRightOf="@id/camera_change"
+            >       
+        </Button>
+        
+        <Button
+            android:id="@+id/back"
+            android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:onClick="changeButtonColor"
+             android:text="go"
+             android:layout_alignParentBottom="true"
+             android:layout_toRightOf="@id/flash"
+            >       
+        </Button>
+            		
+    
+ </RelativeLayout>
