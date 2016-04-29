@@ -14,7 +14,6 @@ class VideoConfig {
 
 public class MOLiveStreamConstConfig {
 
-	public static final String PUBLIC_RTMP_URL = "rtmp://lazbup.dnion.com/lazb/001";
 	public static final String LOCAL_RTMP_URL = "rtmp://192.168.1.22/live/android";
 
 	public static final VideoConfig FORMAT_240P = new VideoConfig(320, 240);

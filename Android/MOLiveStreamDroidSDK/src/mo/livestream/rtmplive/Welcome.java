@@ -35,19 +35,7 @@ public class Welcome extends Activity{
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
-        
-        	Time time = new Time("GMT+8"); 
-        	time.setToNow(); 
-        	int year = time.year; 
-        	int month = time.month; 
-        	int day = time.monthDay; 
-        	Log.d("welcome","time:"+year+"-"+month);
-        	if(year != 2016 || month >3 )
-        	{
-        		System.exit(0);
-        	}
 
-        
         setting_btn = (Button)findViewById(R.id.setting_ok);
         setting_btn.setOnClickListener(OnClickChangeBtn);
         
