@@ -7,7 +7,6 @@ public class MOLiveStreamSDK {
 	static {
 		try {
 			System.loadLibrary("yuvhelper");
-			System.loadLibrary("openh264");
 			System.loadLibrary("MOLiveStreamSDK");
 		} catch (UnsatisfiedLinkError ule) {
 			System.err.println("WARNING: Could not load library!");
@@ -40,10 +39,10 @@ public class MOLiveStreamSDK {
 	public native int StopLive();
 
 	// audio data callback
-	public native int OnCaptureAudioData(byte[] data, int len);
+	public native int OnCaptureAudioData(byte[] data, long ts);
 
 	// video data callback
-	private native int OnCaptureVideoData(byte[] data, int len, int isFront, int isHWEncode/* hw encode */);
+	private native int OnCaptureVideoData(byte[] data, int width, int height, long ts ,int isFront);
 
 	// 转换YUV格式以及旋转
 	private native int ConvertYUVData(byte[] srcData, byte[] dstData, int isFront);
@@ -81,13 +80,13 @@ public class MOLiveStreamSDK {
 		return SetVideoEncode(width, height, fps, bitrate);
 	}
 
-	public int OnCaptureVideoFrame(byte[] data, int len, int isFront) 
+	public int OnCaptureVideoFrame(byte[] data, int width, int height, long ts, int isFront) 
 	{
 		if(mMediaLiveStatus <= 0)
 			return 0;
 		
 		Log.d(TAG, "use sw encoder");
-		OnCaptureVideoData(data, len, isFront, 0);
+		OnCaptureVideoData(data, width, height, ts, isFront);
 		return 0;
 	}
 

@@ -32,8 +32,8 @@ public class MediaLiveActivity extends Activity implements Callback {
 	
 	private int isPreviewCamera = 0;
 
-	private int m_enableAudio = 0;
-	private int m_enableVideo = 0;
+	private int m_enableAudio = 1;
+	private int m_enableVideo = 1;
 
 	private String mRtmpUrl = null;
 
@@ -107,11 +107,11 @@ public class MediaLiveActivity extends Activity implements Callback {
 				Log.d(TAG, "onConnectError:"+err);
 			}
 		});
+		    mMediaLiveHelper.SetServerUrl(mRtmpUrl);
 			mMediaLiveHelper.SetVideoOption(mVideoWidth, mVideoHeight, MOLiveStreamConstConfig.HW_VideoEncode_Disable);
 			mMediaLiveHelper.SetCameraView(mSurfaceHolder, mVideoWidth, mVideoHeight);
 			mMediaLiveHelper.SetAudioOption(MOLiveStreamConstConfig.AUDIO_SAMPLE_RATE_44100, 
 											MOLiveStreamConstConfig.AUDIO_CHANNELS_MONO);
-			mMediaLiveHelper.SetServerUrl(mRtmpUrl);
 	}
 
 	OnClickListener OnClickChangeBtn = new OnClickListener() {

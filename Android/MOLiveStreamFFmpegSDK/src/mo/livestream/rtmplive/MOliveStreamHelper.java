@@ -79,7 +79,7 @@ public class MOliveStreamHelper{
 			mCameraHelper.setCameraFormat(mVideoWidth, mVideoHeight);
 		}
 		if (mPublisherHelper != null) {
-			mPublisherHelper.SetVideoEncoder(mVideoWidth, mVideoHeight, mVideoFps, mVideoBitrate,enableHWCodec);
+			mPublisherHelper.SetVideoEncoder(mVideoHeight, mVideoWidth, mVideoFps, mVideoBitrate*1000,enableHWCodec);
 		}
 	}
 
@@ -89,7 +89,8 @@ public class MOliveStreamHelper{
 		}
 
 		if (mPublisherHelper != null) {
-			mMaxAudioReadbytes = mPublisherHelper.SetAudioEncode(sampleRate, channel);
+			mPublisherHelper.SetAudioEncode(sampleRate, channel);
+			mMaxAudioReadbytes = 2048;
 			mAudioHeplper.setAudioOption(sampleRate, mMaxAudioReadbytes);
 		}
 	}
