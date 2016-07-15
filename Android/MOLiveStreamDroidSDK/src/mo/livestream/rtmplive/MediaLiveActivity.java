@@ -20,10 +20,10 @@ public class MediaLiveActivity extends Activity implements Callback {
 	private MOliveStreamHelper mMediaLiveHelper = null;
 
 	private Button mPreviewBtn = null;
-	private Button mFlashCtrlBtn = null;
+
 	private Button mLiveCtrlBtn = null;
 	private Button mChangeCameraBtn = null;
-	private Button mBackBtn = null;
+
 	private SurfaceView mSurfaceView = null;
 	private SurfaceHolder mSurfaceHolder = null;
 
@@ -31,7 +31,6 @@ public class MediaLiveActivity extends Activity implements Callback {
 	private int mVideoHeight = 480;
 	
 	private int isPreviewCamera = 0;
-	private int isOpenFlash = 0;
 
 	private int m_enableAudio = 0;
 	private int m_enableVideo = 0;
@@ -46,17 +45,11 @@ public class MediaLiveActivity extends Activity implements Callback {
 		mPreviewBtn = (Button) findViewById(R.id.preview_camera);
 		mPreviewBtn.setOnClickListener(OnClickChangeBtn);
 
-		mFlashCtrlBtn = (Button) findViewById(R.id.flash_ctrl);
-		mFlashCtrlBtn.setOnClickListener(OnClickChangeBtn);
-
 		mLiveCtrlBtn = (Button) findViewById(R.id.live_control);
 		mLiveCtrlBtn.setOnClickListener(OnClickChangeBtn);
 
 		mChangeCameraBtn = (Button) findViewById(R.id.camera_change);
 		mChangeCameraBtn.setOnClickListener(OnClickChangeBtn);
-
-		mBackBtn = (Button) findViewById(R.id.back);
-		mBackBtn.setOnClickListener(OnClickChangeBtn);
 
 		mSurfaceView = (SurfaceView) this.findViewById(R.id.surface);
 		
@@ -130,31 +123,19 @@ public class MediaLiveActivity extends Activity implements Callback {
 			} else if (v.getId() == R.id.live_control) {
 
 				RunPublisherHelper();
-			} else if (v.getId() == R.id.back) {
-				Intent intent = new Intent(MediaLiveActivity.this, SettingActivity.class);
-				startActivity(intent);
-				// finish();
 			} else if (v.getId() == R.id.preview_camera) {
 				if (isPreviewCamera == 0) {
 					mMediaLiveHelper.StartPreviewCamera(MOLiveStreamConstConfig.CAMERA_FACE_FRONT);
 					isPreviewCamera = 1;
-					mPreviewBtn.setText("Stop preview");
+					mPreviewBtn.setBackground(getResources().getDrawable(R.drawable.btn_preview_press));
+					//mPreviewBtn.setText("Stop preview");
 				} else {
 					mMediaLiveHelper.StopPreviewCamera();
 					isPreviewCamera = 0;
-					mPreviewBtn.setText("Start preview");
+					mPreviewBtn.setBackground(getResources().getDrawable(R.drawable.btn_preview));
+					//mPreviewBtn.setText("Start preview");
 				}
-			} else if (v.getId() == R.id.flash_ctrl) {
-				if (isOpenFlash == 0) {
-					mMediaLiveHelper.SwitchFlash(1);
-					isOpenFlash = 1;
-					mFlashCtrlBtn.setText("Stop flash");
-				} else {
-					mMediaLiveHelper.SwitchFlash(0);
-					isOpenFlash = 0;
-					mFlashCtrlBtn.setText("Start flash");
-				}
-			}
+			} 
 		}
 	};
 
@@ -190,13 +171,14 @@ public class MediaLiveActivity extends Activity implements Callback {
 		super.onDestroy();
 	}
 
-	@Override
+	@SuppressLint("NewApi") @Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
 		Log.d(TAG, "surfaceCreated:" + mSurfaceHolder);
 		mMediaLiveHelper.StartPreviewCamera(MOLiveStreamConstConfig.CAMERA_FACE_FRONT);
 		isPreviewCamera = 1;
-		mPreviewBtn.setText("Stop preview");
+		mPreviewBtn.setBackground(getResources().getDrawable(R.drawable.btn_preview));
+		//mPreviewBtn.setText("Stop preview");
 	}
 
 	@Override

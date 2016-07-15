@@ -19,7 +19,6 @@ public class MOLiveStreamSDK {
 	private int IsSupportAVC = 0; //<< if support hw encode
 	private byte[] mYuvOutData = null; //<< convert output data
 	private byte[] mVideoEncData = null; //<< hw encode output data
-	private MOLiveStreamAvcEncoder mVideoHWEncoder = null; //<< hw encoder
 
 	private int mMediaLiveStatus = 0; //<< media live status(0:stop,1:start)
 	private MOLiveStreamCallBack mPusherCallback = null; //<< media pusher callback
@@ -92,37 +91,7 @@ public class MOLiveStreamSDK {
 
 	//
 	public int SetVideoEncoder(int width, int height, int fps, int bitrate, boolean enable_hw) {
-		// 硬件编码
-		 if(enable_hw)
-		 {
-			 if(CheckSupportHWEncode()==true)
-			 {
-			 mVideoEncData = new byte[width * height*3/2];
-			 mYuvOutData = new byte[width * height * 3/2];
-			
-			 //because rotate,so care the height and width
-			 mVideoHWEncoder.setVideoOptions(height, width, fps, bitrate);
-			 }
-		 }
-		 
 		return SetVideoEncode(width, height, fps, bitrate);
-	}
-
-	// check support hw encoderz
-	public boolean CheckSupportHWEncode() {
-		// create hw encoder
-		mVideoHWEncoder = new MOLiveStreamAvcEncoder();
-
-		// check support
-		if (mVideoHWEncoder.initialize() < 0) {
-			Log.d(TAG, "is not support hw vdieo encode");
-			IsSupportAVC = 0;
-			return false;
-		} else {
-			Log.d(TAG, "is support hw vdieo encode");
-			IsSupportAVC = 1;
-			return true;
-		}
 	}
 
 	public int OnCaptureVideoFrame(byte[] data, int len, int isFront) 
@@ -130,18 +99,8 @@ public class MOLiveStreamSDK {
 		if(mMediaLiveStatus <= 0)
 			return 0;
 		
-		if (IsSupportAVC == 1 && mVideoHWEncoder != null) 
-		{
-			ConvertYUVData(data, mYuvOutData, isFront);
-
-			int data_len = mVideoHWEncoder.EncodeData(mYuvOutData, mVideoEncData);
-
-			Log.d(TAG, "use hw encoder: " + mVideoEncData.length + "[" + data_len + "]");
-			OnCaptureVideoData(mVideoEncData, data_len, isFront, 1);
-		} else {
-			Log.d(TAG, "use sw encoder");
-			OnCaptureVideoData(data, len, isFront, 0);
-		}
+		Log.d(TAG, "use sw encoder");
+		OnCaptureVideoData(data, len, isFront, 0);
 		return 0;
 	}
 

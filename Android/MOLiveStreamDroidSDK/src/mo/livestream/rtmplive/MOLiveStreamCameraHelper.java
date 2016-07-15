@@ -154,7 +154,41 @@ public class MOLiveStreamCameraHelper implements Runnable, Camera.PreviewCallbac
 
 			/* Camera Service settings */
 			Camera.Parameters parameters = mCamera.getParameters();
-			parameters.setPreviewSize(mVideoWidth, mVideoHeight);
+			
+			//set focus mode
+		    List<String> focusModesList = parameters.getSupportedFocusModes();  
+		    for(int i=0;i<focusModesList.size();i++)
+		    {
+		    	  Log.d(TAG, "Camera Support FOCUS MODE:"+focusModesList.get(i));
+		    }		      
+		    if (focusModesList.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {  		            
+		    	  parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+		          Log.d(TAG, "Current Focus Mode is FOCUS_MODE_CONTINUOUS_PICTURE");       
+		    }else if (focusModesList.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {  		            
+		    	  parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+		          Log.d(TAG, "Current Focus Mode is AUTO FOCUS MODE");    
+		    }else if (focusModesList.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {  
+		    	  parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+		          Log.d(TAG, "Current Focus Mode is FOCUS_MODE_CONTINUOUS_VIDEO");  
+		    }
+		      
+		     
+		    //set preview size
+			List previewSizes = this.mCamera.getParameters().getSupportedPreviewSizes();
+			for (int i = 0; i < previewSizes.size(); i++) {
+		        Camera.Size s = (Camera.Size)previewSizes.get(i);
+
+		        Log.d(TAG, "preview width:" + s.width + ", height:" + s.height);
+
+		        if ((s.width == this.mVideoWidth) && (s.height == this.mVideoHeight)) {
+		          this.mVideoWidth = s.width;
+		          this.mVideoHeight = s.height;
+		          parameters.setPreviewSize(s.width, s.height);
+		          break;
+		        }
+		    }
+			
+			//set flash mode
 			if (flash_mode == 1) {
 				parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
 			} else {
