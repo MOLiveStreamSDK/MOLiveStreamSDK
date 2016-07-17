@@ -1,0 +1,14 @@
+prefix=/home/bairui/WorkSpace/FFMPEG/android-ffmpeg-x264-faac/ffmpeg-3.0.2/../output/armv5te
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libswresample
+Description: FFmpeg audio resampling library
+Version: 2.0.101
+Requires: libavutil >= 55.17.103
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lswresample -lm
+Libs.private: 
+Cflags: -I${includedir}
