@@ -21,6 +21,10 @@ int g_dst_height= 480;
 
 LiveStreamFFmpeg *pthis;
 
+static int g_total_send_bytes = 0; //<< total send bytes per second
+static long long g_send_ts_0 = 0;  //<< start count ts ms
+static long long g_send_ts_1 = 0;  //<< current count ts ms
+
 void my_log_callback(void *ptr, int level, const char *fmt, va_list vargs) {
 	LOGD(fmt, vargs);
 }
@@ -360,9 +364,16 @@ int LiveStreamFFmpeg::startSession()
 		LOGD("you must set server url fisrt");
 		return -22;
 	}
+	
+	//AVDictionary *options = NULL;
+	//av_dict_set(&options, "rtmp_app", "tuyooc", 0);
+	//av_dict_set(&options, "rtmp_buffer", "1000", 0);
+	
 	// open file. 
 	int ret = avio_open2(&m_av_ctx->pb, rtmp_url, AVIO_FLAG_READ_WRITE | AVIO_FLAG_NONBLOCK , &m_av_ctx->interrupt_callback, NULL);
-
+	
+	//av_dict_free(&options);
+	
 	strcpy(m_av_ctx->filename, rtmp_url);
 
 	if(ret < 0){ 
@@ -531,6 +542,17 @@ int LiveStreamFFmpeg::OnCaputureVideo(unsigned char * data, unsigned int len, in
 		LOGD("video send error: %d %s", ret,errbuf);	
 	}
 	
+	// debug send bytes per second
+	if (g_send_ts_0 == 0)
+		g_send_ts_0 = LiveGetTimeStamp();
+	
+	//current time and total bytes
+	g_send_ts_1 = LiveGetTimeStamp();
+	g_total_send_bytes += m_video_pkt.size;
+
+	// spend times
+	long long current_diff = g_send_ts_1 - g_send_ts_0;
+	
 	av_free_packet(&m_video_pkt);
 
 	free(yuv_i420_scale);
@@ -540,6 +562,39 @@ int LiveStreamFFmpeg::OnCaputureVideo(unsigned char * data, unsigned int len, in
 	//unlock
 	pthread_mutex_unlock(&m_video_lock);
 
+	//adjust the bitrate
+	if ( current_diff >= 1000)
+	{
+		bool is_bitrate_change = true;
+		int bytes_per_second = g_total_send_bytes * 8 / 1024 * 1000 / current_diff;
+		LOGD("send video per second :%d kBps [%d bytes %lld ms]", bytes_per_second, g_total_send_bytes, current_diff);	
+		
+		if ( bytes_per_second >500 && m_video_bitrate!=LiveStreamBitrate512)                                // bitrate > 500 ,      use 512 kbps
+			m_video_bitrate = LiveStreamBitrate512;
+		else if ( bytes_per_second <300 && bytes_per_second >200 && m_video_bitrate!=LiveStreamBitrate256)  // 200 < bitrate < 300 , use 256 kbps
+			m_video_bitrate = LiveStreamBitrate256;
+		else if ( bytes_per_second <200 && bytes_per_second >150 && m_video_bitrate!=LiveStreamBitrate192)  // 150 < bitrate < 200 , use 192 kbps
+			m_video_bitrate = LiveStreamBitrate192;
+		else if ( bytes_per_second <100 && m_video_bitrate!=LiveStreamBitrate92)                            // bitrate < 100 ,       use 92 kbps
+			m_video_bitrate = LiveStreamBitrate92;
+		else
+			is_bitrate_change = false;
+		
+		if(is_bitrate_change && 
+			g_dst_width>0 && 
+			g_dst_height>0 &&
+			m_video_bitrate>0 &&
+			m_video_fps>0)
+		{
+			setVideoOption(g_dst_width, g_dst_height, m_video_bitrate, m_video_fps);
+			LOGD("change video option:birate:%d, fps:%d, WxH:%d_%d",m_video_bitrate,m_video_fps,g_dst_width,g_dst_height);
+		}
+
+		g_send_ts_0 = 0;
+		g_send_ts_1 = 0;
+		g_total_send_bytes = 0;
+	}
+	
 	return 0;
 }
 
