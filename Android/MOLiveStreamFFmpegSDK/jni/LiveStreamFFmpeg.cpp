@@ -1,6 +1,5 @@
 
 #include "LiveStreamFFmpeg.h"
-#include "libyuvhelper.h"
 
 #include <string.h>
 #include <time.h>
@@ -24,6 +23,105 @@ LiveStreamFFmpeg *pthis;
 static int g_total_send_bytes = 0; //<< total send bytes per second
 static long long g_send_ts_0 = 0;  //<< start count ts ms
 static long long g_send_ts_1 = 0;  //<< current count ts ms
+
+static void YUV420sp2YUV420(unsigned char *dst, unsigned char *src, int width, int height)
+{
+	if (src == NULL ||dst == NULL)
+		return;
+	int framesize = width*height;
+	int i = 0, j = 0;
+	//copy y
+	for (i = 0; i < framesize; i++)
+	{
+		dst[i] = src[i];
+	}
+	i = 0;
+	for (j = 0; j < framesize/2; j+=2)
+	{
+		dst[i + framesize*5/4] = src[j+framesize];
+		i++;
+	}
+	i = 0;
+	for(j = 1; j < framesize/2;j+=2)
+	{
+		dst[i+framesize] = src[j+framesize];
+		i++;
+	}
+}
+
+static void YUV420spRotateNegative90(unsigned char *dst, unsigned char *src, int width, int height)  
+{  
+    static int nWidth = 0, nHeight = 0;  
+    static int wh = 0;  
+    static int uvHeight = 0;  
+    if(width != nWidth || height != nHeight)  
+    {  
+        nWidth = width;  
+        nHeight = height;  
+        wh = width * height;  
+        uvHeight = height >> 1;//uvHeight = height / 2  
+    }  
+  
+    //rotate Y  
+    int k = 0;  
+    for(int i = 0; i < width; i++){  
+        int nPos = width - 1;  
+        for(int j = 0; j < height; j++)  
+        {  
+            dst[k] = src[nPos - i];  
+            k++;  
+            nPos += width;  
+        }  
+    }  
+  
+    for(int i = 0; i < width; i+=2){  
+        int nPos = wh + width - 1;  
+        for(int j = 0; j < uvHeight; j++) {  
+            dst[k] = src[nPos - i - 1];  
+            dst[k + 1] = src[nPos - i];  
+            k += 2;  
+            nPos += width;  
+        }  
+    }  
+  
+    return;  
+}  
+
+static void YUV420spRotate90(unsigned char *dst, unsigned char *src, int width, int srcHeight)  
+{  
+    static int nWidth = 0, nHeight = 0;  
+    static int wh = 0;  
+    static int uvHeight = 0;  
+    if(width != nWidth || srcHeight != nHeight)  
+    {  
+        nWidth = width;  
+        nHeight = srcHeight;  
+        wh = width * srcHeight;  
+        uvHeight = srcHeight >> 1;//uvHeight = height / 2  
+    }  
+  
+    //Ðý×ªY  
+    int k = 0;  
+    for(int i = 0; i < width; i++) {  
+        int nPos = 0;  
+        for(int j = 0; j < srcHeight; j++) {  
+            dst[k] = src[nPos + i];  
+            k++;  
+            nPos += width;  
+        }  
+    }  
+  
+    for(int i = 0; i < width; i+=2){  
+        int nPos = wh;  
+        for(int j = 0; j < uvHeight; j++) {  
+            dst[k] = src[nPos + i];  
+            dst[k + 1] = src[nPos + i + 1];  
+            k += 2;  
+            nPos += width;  
+        }  
+    }  
+    return;  
+}  
 
 void my_log_callback(void *ptr, int level, const char *fmt, va_list vargs) {
 	LOGD(fmt, vargs);
@@ -365,10 +463,6 @@ int LiveStreamFFmpeg::startSession()
 		return -22;
 	}
 	
-	//AVDictionary *options = NULL;
-	//av_dict_set(&options, "rtmp_app", "tuyooc", 0);
-	//av_dict_set(&options, "rtmp_buffer", "1000", 0);
-	
 	// open file. 
 	int ret = avio_open2(&m_av_ctx->pb, rtmp_url, AVIO_FLAG_READ_WRITE | AVIO_FLAG_NONBLOCK , &m_av_ctx->interrupt_callback, NULL);
 	
@@ -471,30 +565,20 @@ int LiveStreamFFmpeg::OnCaputureVideo(unsigned char * data, unsigned int len, in
 
 	int ret              = 0;
 	int got_video_packet = 0;
-	int rotate_width     = in_height;
-	int rotate_height    = in_width;
 	int dst_width        = g_dst_width;
 	int dst_height       = g_dst_height;
 	int yuv_size         = in_width * in_height * 3 / 2;
 	uint8_t* yuv_i420    = (uint8_t *) malloc(yuv_size);
-	uint8_t* yuv_i420_90 = (uint8_t *) malloc(yuv_size);
-
-	CLibYUVHelper::ConvertOther2YUV420P(in_width, in_height, (unsigned char*)data, MOLIVE_PIX_FMT_NV21,(unsigned char*)yuv_i420);
+	uint8_t* yuv_420sp_90 = (uint8_t *) malloc(yuv_size);
 
 	if(is_front)
-		CLibYUVHelper::RotateYUV420PFrame(in_width, in_height, (unsigned char*)yuv_i420, (unsigned char*)yuv_i420_90, -90);
+		YUV420spRotateNegative90(yuv_420sp_90,data,in_width,in_height);
 	else
-		CLibYUVHelper::RotateYUV420PFrame(in_width, in_height, (unsigned char*)yuv_i420, (unsigned char*)yuv_i420_90, 90);
+		YUV420spRotate90(yuv_420sp_90,data,in_width,in_height);
 
-	uint8_t* yuv_i420_scale = (uint8_t *) malloc(g_dst_width * g_dst_height * 3 / 2);
+	YUV420sp2YUV420(yuv_i420, yuv_420sp_90, dst_width, dst_height);
 	
-
-	CLibYUVHelper::Scale(rotate_width, rotate_height,yuv_i420_90, 
-					  dst_width,  dst_height,yuv_i420_scale, 
-					  MOLIVE_PIX_FMT_YUV420P, 1);
-	
-
-	ret = avpicture_fill((AVPicture *) m_video_frame, yuv_i420_scale, AV_PIX_FMT_YUV420P, dst_width,dst_height);
+	ret = avpicture_fill((AVPicture *) m_video_frame, yuv_i420, AV_PIX_FMT_YUV420P, dst_width,dst_height);
 	if (ret < 0) {
 		pthread_mutex_unlock(&m_video_lock);
 		return -2;
@@ -555,9 +639,8 @@ int LiveStreamFFmpeg::OnCaputureVideo(unsigned char * data, unsigned int len, in
 	
 	av_free_packet(&m_video_pkt);
 
-	free(yuv_i420_scale);
 	free(yuv_i420);
-	free(yuv_i420_90);
+	free(yuv_420sp_90);
 
 	//unlock
 	pthread_mutex_unlock(&m_video_lock);

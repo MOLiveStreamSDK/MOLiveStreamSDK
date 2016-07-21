@@ -1,5 +1,6 @@
 package mo.livestream.rtmplive;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import android.annotation.SuppressLint;
@@ -330,6 +331,7 @@ public class MOLiveStreamCameraHelper implements Runnable, Camera.PreviewCallbac
 			//Log.e(TAG, mMeidaPushHelper.GetMediaLiveStatus()+"");
 			if (mMeidaPushHelper.GetMediaLiveStatus() == 1 && mMeidaPushHelper != null) {
 				Log.d(TAG, "OnCaptureVideo:" + data.length);
+				
 				mMeidaPushHelper.OnCaptureVideoFrame(data, this.mVideoWidth, this.mVideoHeight, 0L, getCameraFace());
 				Log.d(TAG, "OnCaptureVideo");
 			}

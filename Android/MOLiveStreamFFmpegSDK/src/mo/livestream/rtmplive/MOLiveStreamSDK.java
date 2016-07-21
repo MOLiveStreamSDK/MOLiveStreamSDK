@@ -6,7 +6,6 @@ public class MOLiveStreamSDK {
 
 	static {
 		try {
-			System.loadLibrary("yuvhelper");
 			System.loadLibrary("MOLiveStreamSDK");
 		} catch (UnsatisfiedLinkError ule) {
 			System.err.println("WARNING: Could not load library!");

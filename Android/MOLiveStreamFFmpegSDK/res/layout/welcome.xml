@@ -20,7 +20,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="100dp"
         android:layout_toRightOf="@id/tv"
-        android:text="rtmp://192.168.0.109/live/molive" />
+        android:text="rtmp://192.168.0.107/live/molive" />
 
     
     <Button
