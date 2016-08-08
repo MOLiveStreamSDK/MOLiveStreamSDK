@@ -9,10 +9,12 @@
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "LiveStreamFFmpeg", __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, "LiveStreamFFmpeg", __VA_ARGS__)
 
+#define  ENABLE_RECORD 0
 #define  MAX_RTMP_URL_LEN  256
 
 char rtmp_url[MAX_RTMP_URL_LEN]={0};
 
+const char* record_file = "";
 int debug = 0;
 
 int g_dst_width = 640;
@@ -23,6 +25,7 @@ LiveStreamFFmpeg *pthis;
 static int g_total_send_bytes = 0; //<< total send bytes per second
 static long long g_send_ts_0 = 0;  //<< start count ts ms
 static long long g_send_ts_1 = 0;  //<< current count ts ms
+
 
 static void YUV420sp2YUV420(unsigned char *dst, unsigned char *src, int width, int height)
 {
@@ -177,6 +180,8 @@ LiveStreamFFmpeg::LiveStreamFFmpeg()
 	m_video_bitrate = 0;
 	
 	m_lStartLiveTimeStamp = 0;
+	
+	m_Recorder = NULL;
 
 //media codec lock
 	pthread_mutex_init(&m_video_lock,NULL);
@@ -199,13 +204,21 @@ void LiveStreamFFmpeg::Initialize()
 	av_register_all();
 	avformat_network_init();
 
-	
+#if ENABLE_RECORD
+	if(m_Recorder==NULL)
+		m_Recorder = new LiveStreamRecord();
+#endif
 	return ;
 }
 void LiveStreamFFmpeg::Destroy()
 {
 	stopSession();
-
+	
+	if(m_Recorder!=NULL)
+	{
+		delete m_Recorder;
+		m_Recorder = NULL;
+	}
 //media codec lock
 	pthread_mutex_destroy(&m_video_lock);
 	pthread_mutex_destroy(&m_audio_lock);
@@ -462,23 +475,27 @@ int LiveStreamFFmpeg::startSession()
 		LOGD("you must set server url fisrt");
 		return -22;
 	}
+	int ret = -1;
+	
+	if(m_Recorder)
+	{
+		ret = m_Recorder->open(record_file);
+		if(ret < 0)
+			LOGD("open record file error:%d\n", ret);
+		return ret;
+	}
 	
 	// open file. 
-	int ret = avio_open2(&m_av_ctx->pb, rtmp_url, AVIO_FLAG_READ_WRITE | AVIO_FLAG_NONBLOCK , &m_av_ctx->interrupt_callback, NULL);
-	
-	//av_dict_free(&options);
-	
-	strcpy(m_av_ctx->filename, rtmp_url);
-
+	ret = avio_open2(&m_av_ctx->pb, rtmp_url, AVIO_FLAG_READ_WRITE | AVIO_FLAG_NONBLOCK , &m_av_ctx->interrupt_callback, NULL);
 	if(ret < 0){ 
 		LOGD("avio_open2 failed:%d,url:%s\n", ret,rtmp_url);
 		return -1; 
 	} 
 	
+	strcpy(m_av_ctx->filename, rtmp_url);
 	m_av_ctx->max_interleave_delta = 1000000/2;
 
 	ret = avformat_write_header(m_av_ctx, NULL);
-
 	if (ret < 0) {
 		LOGD("avformat_write_header failed %d", ret);
 		return -3;
@@ -512,6 +529,9 @@ int LiveStreamFFmpeg::stopSession()
 		avformat_free_context(m_av_ctx);
 		m_av_ctx = NULL;
 	}
+	
+	if(m_Recorder)
+		m_Recorder->close();
 	
 	return 0;
 }

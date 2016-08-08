@@ -6,6 +6,9 @@
 #include <sys/types.h>
 #include <sys/time.h>
 
+//record
+#include "LiveStreamRecord.h"
+
 extern "C"
 {
 #ifdef __cplusplus
@@ -120,6 +123,8 @@ private:
 	pthread_mutex_t m_write_lock;  //<< write lock
 
 	long long  m_lStartLiveTimeStamp;     //<< start live timestamp
+	
+	LiveStreamRecord *m_Recorder;
 	
 };
 
