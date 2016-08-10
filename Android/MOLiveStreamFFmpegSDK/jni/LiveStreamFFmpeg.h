@@ -47,11 +47,6 @@ enum {
 		LiveStreamBitrate92  = 92000
 };
 
-typedef struct
-{
-	uint8_t alpha, red, green, blue;
-} ARGB;
-
 class LiveStreamFFmpeg
 {
 public:
