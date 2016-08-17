@@ -83,15 +83,15 @@ public class MOliveStreamHelper{
 		}
 	}
 
-	public void SetAudioOption(int sampleRate, int channel) {
-		if (sampleRate <= 0 || channel <= 0) {
+	public void SetAudioOption(int sampleRate, int channels) {
+		if (sampleRate <= 0 || channels <= 0) {
 			//throw new ParamException("Video sampleRate or channel not supported");
 		}
 
 		if (mPublisherHelper != null) {
-			mPublisherHelper.SetAudioEncode(sampleRate, channel);
-			mMaxAudioReadbytes = 2048;
-			mAudioHeplper.setAudioOption(sampleRate, mMaxAudioReadbytes);
+			mPublisherHelper.SetAudioEncode(sampleRate, channels);
+			mMaxAudioReadbytes = 2048*channels;
+			mAudioHeplper.setAudioOption(sampleRate,channels, mMaxAudioReadbytes);
 		}
 	}
 	

@@ -111,7 +111,7 @@ public class MediaLiveActivity extends Activity implements Callback {
 			mMediaLiveHelper.SetVideoOption(mVideoWidth, mVideoHeight, MOLiveStreamConstConfig.HW_VideoEncode_Disable);
 			mMediaLiveHelper.SetCameraView(mSurfaceHolder, mVideoWidth, mVideoHeight);
 			mMediaLiveHelper.SetAudioOption(MOLiveStreamConstConfig.AUDIO_SAMPLE_RATE_44100, 
-											MOLiveStreamConstConfig.AUDIO_CHANNELS_MONO);
+											MOLiveStreamConstConfig.AUDIO_CHANNELS_STEREO);
 	}
 
 	OnClickListener OnClickChangeBtn = new OnClickListener() {

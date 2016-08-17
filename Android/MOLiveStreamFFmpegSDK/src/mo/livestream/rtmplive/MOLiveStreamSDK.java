@@ -29,7 +29,7 @@ public class MOLiveStreamSDK {
 	public native int SetVideoEncode(int width, int height, int fps, int bitrate);
 
 	// set audio encode param
-	public native int SetAudioEncode(int sample_rate, int channel);
+	public native int SetAudioEncode(int sample_rate, int channels);
 
 	// start live
 	public native int StartLive();

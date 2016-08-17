@@ -181,7 +181,7 @@ LiveStreamFFmpeg::LiveStreamFFmpeg()
 	
 	m_lStartLiveTimeStamp = 0;
 	
-	m_Recorder = NULL;
+	//m_Recorder = NULL;
 
 //media codec lock
 	pthread_mutex_init(&m_video_lock,NULL);
@@ -204,21 +204,24 @@ void LiveStreamFFmpeg::Initialize()
 	av_register_all();
 	avformat_network_init();
 
+/*
 #if ENABLE_RECORD
 	if(m_Recorder==NULL)
 		m_Recorder = new LiveStreamRecord();
 #endif
+*/
 	return ;
 }
 void LiveStreamFFmpeg::Destroy()
 {
 	stopSession();
-	
+/*
 	if(m_Recorder!=NULL)
 	{
 		delete m_Recorder;
 		m_Recorder = NULL;
 	}
+*/
 //media codec lock
 	pthread_mutex_destroy(&m_video_lock);
 	pthread_mutex_destroy(&m_audio_lock);
@@ -371,7 +374,7 @@ int LiveStreamFFmpeg::setVideoOption(int width, int height,int bitrate, int fps)
 	return 0;
 }
 
-int LiveStreamFFmpeg::setAudioOption(int sample_rate)
+int LiveStreamFFmpeg::setAudioOption(int sample_rate, int channels)
 {
 	CloseAudioCode();
 
@@ -401,7 +404,7 @@ int LiveStreamFFmpeg::setAudioOption(int sample_rate)
 	m_audio_ctx->time_base.den = sample_rate;
 	m_audio_st->time_base.num = 1;
 	m_audio_st->time_base.den = sample_rate;
-	m_audio_ctx->channels = 1;
+	m_audio_ctx->channels = channels;
 	m_audio_ctx->channel_layout = av_get_default_channel_layout(m_audio_ctx->channels);
 
 	m_audio_ctx->sample_fmt = AV_SAMPLE_FMT_S16;
@@ -476,7 +479,8 @@ int LiveStreamFFmpeg::startSession()
 		return -22;
 	}
 	int ret = -1;
-	
+
+/*	
 	if(m_Recorder)
 	{
 		ret = m_Recorder->open(record_file);
@@ -484,7 +488,7 @@ int LiveStreamFFmpeg::startSession()
 			LOGD("open record file error:%d\n", ret);
 		return ret;
 	}
-	
+*/	
 	// open file. 
 	ret = avio_open2(&m_av_ctx->pb, rtmp_url, AVIO_FLAG_READ_WRITE | AVIO_FLAG_NONBLOCK , &m_av_ctx->interrupt_callback, NULL);
 	if(ret < 0){ 
@@ -529,10 +533,10 @@ int LiveStreamFFmpeg::stopSession()
 		avformat_free_context(m_av_ctx);
 		m_av_ctx = NULL;
 	}
-	
+/*	
 	if(m_Recorder)
 		m_Recorder->close();
-	
+*/	
 	return 0;
 }
 

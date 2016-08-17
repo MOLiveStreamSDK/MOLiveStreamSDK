@@ -47,6 +47,7 @@ public class MOLiveStreamConstConfig {
 	
 	public static final int AUDIO_SAMPLE_RATE_44100 = 44100;
 	public static final int AUDIO_CHANNELS_MONO = 1;
+	public static final int AUDIO_CHANNELS_STEREO = 2;
 
 	public static final int CAMERA_FACE_BACK  = Camera.CameraInfo.CAMERA_FACING_BACK;
 	public static final int CAMERA_FACE_FRONT = Camera.CameraInfo.CAMERA_FACING_FRONT;

@@ -7,7 +7,7 @@
 #include <sys/time.h>
 
 //record
-#include "LiveStreamRecord.h"
+//#include "LiveStreamRecord.h"
 
 extern "C"
 {
@@ -58,7 +58,7 @@ public:
 
 	int setServerUrl(const char* url);
 	int setVideoOption(int width, int height, int bitrate, int fps);
-	int setAudioOption(int sample_rate);
+	int setAudioOption(int sample_rate, int channels);
 
 	int startSession();
 	int stopSession();
@@ -119,7 +119,7 @@ private:
 
 	long long  m_lStartLiveTimeStamp;     //<< start live timestamp
 	
-	LiveStreamRecord *m_Recorder;
+	//LiveStreamRecord *m_Recorder;
 	
 };
 

@@ -130,7 +130,7 @@ JNIEXPORT jint JNICALL Java_mo_livestream_rtmplive_MOLiveStreamSDK_SetAudioEncod
   (JNIEnv *env, jobject obj, jint sample_rate, jint channels){
 
 	LOGD("SetAudioEncoder samplerate:%d",sample_rate);
-	return m_LiveStream->setAudioOption( sample_rate );
+	return m_LiveStream->setAudioOption( sample_rate, channels);
 }
 
 /*

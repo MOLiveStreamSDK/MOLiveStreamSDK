@@ -4,6 +4,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class MOLiveStreamAudioHelper {
 
@@ -17,17 +18,20 @@ public class MOLiveStreamAudioHelper {
 	private AudioRecord mAudioRecord = null;
 	private int mMaxAudioReadbytes = 0;
 
-	public void setAudioOption(int sampleRate, int maxAudioReadbytes) {
+	public void setAudioOption(int sampleRate, int channels, int maxAudioReadbytes) {
 		if (sampleRate <= 0) {
 			mAudioSampleRate = 44100;
-			mAudioChannels = AudioFormat.CHANNEL_CONFIGURATION_MONO;
 		} else {
 			mAudioSampleRate = 44100;
-			mAudioChannels = AudioFormat.CHANNEL_CONFIGURATION_MONO;
 		}
+		if(channels == MOLiveStreamConstConfig.AUDIO_CHANNELS_STEREO)
+			mAudioChannels = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
+		else
+			mAudioChannels = AudioFormat.CHANNEL_CONFIGURATION_MONO;
 
 		mMaxAudioReadbytes = maxAudioReadbytes;
-		Log.d("audio record", "max audio read bytes:" + mMaxAudioReadbytes + "," + maxAudioReadbytes);	
+		Log.i("audio record", "max audio read bytes:" + mMaxAudioReadbytes + "," + maxAudioReadbytes);	
+		Log.i("audio record", "audio channels:" + channels);
 	}
 
 	public void setAudioDataCallBack(MOLiveStreamSDK Obj) {
@@ -41,7 +45,8 @@ public class MOLiveStreamAudioHelper {
 		
 		int recAudioBufSize = AudioRecord.getMinBufferSize(mAudioSampleRate, mAudioChannels, mAudioEncoding);
 
-		Log.e("", "recBufSize:" + recAudioBufSize + "Channel: " + mAudioChannels);
+		Log.i("audio record", "recBufSize:" + recAudioBufSize + "Channel: " + mAudioChannels);
+
 		mAudioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, mAudioSampleRate, mAudioChannels,
 				mAudioEncoding, recAudioBufSize);
 		isAudioRecording = true;
@@ -56,7 +61,7 @@ public class MOLiveStreamAudioHelper {
 	class RecordPlayThread extends Thread {
 		public void run() {
 			try {
-				Log.d("audio record", "max audio read bytes:" + mMaxAudioReadbytes);
+				Log.i("audio record", "max audio read bytes:" + mMaxAudioReadbytes);
 
 				byte[] pcmBuffer = new byte[mMaxAudioReadbytes];
 				mAudioRecord.startRecording();
@@ -66,7 +71,7 @@ public class MOLiveStreamAudioHelper {
 				while (isAudioRecording) {
 
 					int bufferReadResult = mAudioRecord.read(pcmBuffer, 0, mMaxAudioReadbytes);
-					Log.d("audio record",
+					Log.i("audio record",
 							"read audio size:" + bufferReadResult + ",set buffer size: " + mMaxAudioReadbytes);
 					if (bufferReadResult > 0 && mMediaPusher != null) {
 						Log.d("audio record", "onCaputureAudioData");
